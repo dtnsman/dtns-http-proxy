@@ -94,4 +94,6 @@ npm start
 
 ## 许可证
 
-本项目基于 [MIT License](LICENSE) 开源。
+本项目基于 [GNU General Public License v3.0](LICENSE)（GPLv3）开源。
+
+> 注意：GPLv3 为强 Copyleft 许可证，分发本项目及其衍生作品时须以相同许可证开放源代码。
