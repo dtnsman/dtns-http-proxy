@@ -1,0 +1,24 @@
+# 依赖
+node_modules/
+
+# 日志
+*.log
+npm-debug.log*
+logs/
+
+# 本地配置（示例配置 config.js 已提交，下面仅忽略真实私有配置）
+config.local.js
+*.local
+.env
+.env.*
+
+# 运行时产物
+*.pid
+*.seed
+tunnels.local.json
+
+# 编辑器 / 系统
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
