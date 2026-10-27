@@ -22,3 +22,9 @@ tunnels.local.json
 Thumbs.db
 .idea/
 .vscode/
+
+# 工作说明文档（不随开源仓库同步）
+*说明.md
+gitee代码上传说明.md
+github代码上传说明.md
+
