@@ -1083,6 +1083,12 @@ class ProxyServer {
       this.cleanupSSEConnection(requestId);
     });
 
+    // 浏览器关闭/刷新时响应侧也会 close；只监听 req 在某些 Node 版本上不够可靠。
+    res.on('close', () => {
+      console.log(`[${requestId}] SSE响应关闭`);
+      this.cleanupSSEConnection(requestId);
+    });
+
     req.on('error', (error) => {
       console.error(`[${requestId}] SSE连接错误:`, error);
       this.cleanupSSEConnection(requestId);

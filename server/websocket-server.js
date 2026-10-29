@@ -531,22 +531,33 @@ class WebSocketServer {
     }
   }
   
+  closeSseResponse(sseRequestId) {
+    // SSE 响应体由 proxyServer.sseConnections 持有；
+    // 必须走 proxyServer.cleanupSSEConnection 才会 res.end()，
+    // 否则浏览器侧只能一直等（MCP 请求级 SSE 会卡死）。
+    if (this.proxyServer && typeof this.proxyServer.cleanupSSEConnection === 'function') {
+      this.proxyServer.cleanupSSEConnection(sseRequestId);
+    } else {
+      this.handleSSEConnectionClose(sseRequestId);
+    }
+  }
+
   handleSSEEnd(clientId, message) {
     const { sseRequestId, timestamp } = message;
     console.log(`SSE连接正常结束: ${sseRequestId}`);
-    this.handleSSEConnectionClose(sseRequestId);
+    this.closeSseResponse(sseRequestId);
   }
   
   handleSSEError(clientId, message) {
     const { sseRequestId, error, timestamp } = message;
     console.error(`SSE连接错误: ${sseRequestId}`, error);
-    this.handleSSEConnectionClose(sseRequestId);
+    this.closeSseResponse(sseRequestId);
   }
   
   handleSSEClose(clientId, message) {
     const { sseRequestId, timestamp, reason } = message;
     console.log(`SSE连接关闭: ${sseRequestId} (原因: ${reason || 'unknown'})`);
-    this.handleSSEConnectionClose(sseRequestId);
+    this.closeSseResponse(sseRequestId);
   }
   
   handleWebSocketUpgraded(clientId, message) {
@@ -925,6 +936,8 @@ class WebSocketServer {
         if (pendingRequest.sseRequestId === sseRequestId) {
           clearTimeout(pendingRequest.timeout);
           this.pendingRequests.delete(requestId);
+          // handleSSERequest() 还在 await 这个 Promise；不 resolve 会永久挂起。
+          try { pendingRequest.resolve({ status: 200, headers: {}, body: null }); } catch (e) {}
           break;
         }
       }
