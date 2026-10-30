@@ -20,10 +20,12 @@
 
 | 产品 | 它是什么 | 复用本项目的哪一部分 |
 | --- | --- | --- |
-| [**ibbot-pty**](https://github.com/dtnsman/ibbot-pty) | 浏览器里的多主机终端面板 + 可嵌入 SDK，一次暴露 HTTP **和** WebSocket | `server/src/tunnel/dtns-protocol.js` + `tunnel-client.js` + `local-proxy.js` |
+| [**ibbot-pty**](https://github.com/dtnsman/ibbot-pty) ｜ [在线体验](http://cases.html.dtns.top/pty2.html) | 浏览器里的多主机终端面板 + 可嵌入 SDK，一次暴露 HTTP **和** WebSocket | `server/src/tunnel/dtns-protocol.js` + `tunnel-client.js` + `local-proxy.js` |
 | [**DTNS AI Browser**](https://github.com/dtnsman/dtns-ai-browser) | 把**你已登录的 Chrome** 变成 69 个端点的 HTTP API（Chrome MV3 扩展） | `src/protocol/dtns-protocol.js`，二进制帧让 body 原样透传 |
-| [**dsh-bridge**](https://github.com/dtnsman/dsh-bridge) | 把 DeepSeek Harness 控制面桥接成 REST + SSE，手机/脚本/Agent 均可调用 | `src/dtns-protocol.js` + `src/tunnel.js`，内置隧道客户端 |
-| [**dtns-http-proxy-site**](https://github.com/dtnsman/dtns-http-proxy-site) | 项目站 + **零安装**方案：打开一个网页标签页，隧道就通了 | `assets/dtns-protocol.js`，协议实现在浏览器里直接跑 |
+| [**dsh-bridge**](https://github.com/dtnsman/dsh-bridge) ｜ [在线体验](http://cases.html.dtns.top/dsh-proxy-hosts.html) | 把 DeepSeek Harness 控制面桥接成 REST + SSE，手机/脚本/Agent 均可调用 | `src/dtns-protocol.js` + `src/tunnel.js`，内置隧道客户端 |
+| [**dtns-http-proxy-site**](https://github.com/dtnsman/dtns-http-proxy-site) ｜ [在线体验](http://dtns-proxy.html.dtns.top/) | 项目站 + **零安装**方案：打开一个网页标签页，隧道就通了 | `assets/dtns-protocol.js`，协议实现在浏览器里直接跑 |
+
+想直接看效果：`ibbot-pty`、`dsh-bridge`、`dtns-http-proxy-site` 都有公开的在线体验页（纯 HTTP，浏览器打开即用，无需安装），链接见上表。
 
 四个产品的 Gitee 镜像同名：`gitee.com/dtnsman/{ibbot-pty, dtns-ai-browser, dsh-bridge, dtns-http-proxy-site}`。
 
@@ -286,12 +288,12 @@ location /tunnel {
 
 ## 相关项目
 
-| 项目 | 说明 |
-| --- | --- |
-| [ibbot-pty](https://github.com/dtnsman/ibbot-pty) | 多主机浏览器终端面板 + 可嵌入 SDK |
-| [dtns-ai-browser](https://github.com/dtnsman/dtns-ai-browser) | 把已登录的 Chrome 变成 HTTP API |
-| [dsh-bridge](https://github.com/dtnsman/dsh-bridge) | DeepSeek Harness 控制面 → REST + SSE |
-| [dtns-http-proxy-site](https://github.com/dtnsman/dtns-http-proxy-site) | 项目站 + 浏览器标签页零安装 Agent |
+| 项目 | 说明 | 在线体验 |
+| --- | --- | --- |
+| [ibbot-pty](https://github.com/dtnsman/ibbot-pty) | 多主机浏览器终端面板 + 可嵌入 SDK | [pty2.html](http://cases.html.dtns.top/pty2.html) |
+| [dtns-ai-browser](https://github.com/dtnsman/dtns-ai-browser) | 把已登录的 Chrome 变成 HTTP API | — |
+| [dsh-bridge](https://github.com/dtnsman/dsh-bridge) | DeepSeek Harness 控制面 → REST + SSE | [dsh-proxy-hosts.html](http://cases.html.dtns.top/dsh-proxy-hosts.html) |
+| [dtns-http-proxy-site](https://github.com/dtnsman/dtns-http-proxy-site) | 项目站 + 浏览器标签页零安装 Agent | [dtns-proxy.html.dtns.top](http://dtns-proxy.html.dtns.top/) |
 
 ---
 
